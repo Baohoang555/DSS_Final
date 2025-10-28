@@ -64,7 +64,7 @@ Link: https://colab.research.google.com/drive/1r-B2OpRVpzHlXrg6leSr5BjnD4yweB57?
 
 
 
-Import file dữ liệu tickets_all_combined vào SQL và kết nối SQL vào python
+Import file dữ liệu tickets_all_combined.csv vào SQL và kết nối SQL vào python
 
 # Bước 5: Chạy ứng dụng Streamlit
 # Terminal
