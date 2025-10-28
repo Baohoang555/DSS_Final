@@ -37,6 +37,7 @@ Bạn cần có Python 3.8+ và pip được cài đặt trên máy.
 # Bước 1: Clone Repository
 
 git clone [https://github.com/Baohoang555/DSS_Final.git](https://github.com/Baohoang555/DSS_Final.git)
+
 cd ahp.py
 
 # Bước 2: Tạo môi trường ảo (Khuyến nghị)
@@ -60,6 +61,9 @@ pip install -r requirements.txt
 
 # Bước 4: Cấu hình Database SQL
 Link: https://colab.research.google.com/drive/1r-B2OpRVpzHlXrg6leSr5BjnD4yweB57?usp=sharing&fbclid=IwY2xjawNtZY9leHRuA2FlbQIxMABicmlkETFBNTlVSWM3eWtCMk4xS0FKAR4cyaC_U4HR9JDq0d4aGBr9cC1D9jCnBAhsj4N5iKOWg5cyQmoHEGvDNqGHyg_aem_GsoAhms5YetuDBErjYBOrw
+
+
+
 Import file dữ liệu tickets_all_combined vào SQL và kết nối SQL vào python
 
 # Bước 5: Chạy ứng dụng Streamlit
