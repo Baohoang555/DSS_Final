@@ -6,8 +6,7 @@ Lưu ý: Đây là một công cụ tham khảo và phân tích, không phải l
 
 (Ghi chú: Bạn hãy thay thế link ảnh trên bằng ảnh chụp màn hình của chính ứng dụng của bạn, ví dụ như các file ảnh bạn đã gửi lên.)
 <img width="1535" height="549" alt="image" src="https://github.com/user-attachments/assets/8a1125a3-8054-4607-9028-886c5dc45a3e" />
-<img width="1445" height="631" alt="image" src="https://github.com/user-attachments/assets/c75b7b4f-93c9-41ff-a87b-71429196f788" />
-<img width="1437" height="634" alt="image" src="https://github.com/user-attachments/assets/75fb3feb-55bf-4c88-b2e7-744c03667cd6" />
+
 
 
 # 2. Thư viện sử dụng
