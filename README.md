@@ -1,10 +1,12 @@
 # 1. Ứng dụng Phân tích Rủi ro Cổ phiếu bằng TOPSIS
 
-Đây là một ứng dụng web được xây dựng bằng Streamlit, cho phép người dùng phân tích, đánh giá rủi ro và xếp hạng các cổ phiếu dựa trên phương pháp Ra quyết định Đa tiêu chí (MCDM) - TOPSIS và 
+Đây là một ứng dụng web được xây dựng bằng Streamlit, cho phép người dùng phân tích, đánh giá rủi ro và xếp hạng các cổ phiếu dựa trên phương pháp Ra quyết định Đa tiêu chí (MCDM) - TOPSIS kết hợp AHP.
 
 Lưu ý: Đây là một công cụ tham khảo và phân tích, không phải là lời khuyên đầu tư trực tiếp.
 
 <img width="1221" height="522" alt="image" src="https://github.com/user-attachments/assets/114414db-4c44-4413-a56f-a0cc3c068ef2" />
+
+<img width="722" height="742" alt="image" src="https://github.com/user-attachments/assets/21459c11-cbc1-4854-8ffd-75480dec293f" />
 
 
 
