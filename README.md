@@ -1,10 +1,10 @@
 # 1. Ứng dụng Phân tích Rủi ro Cổ phiếu bằng TOPSIS
 
-Đây là một ứng dụng web được xây dựng bằng Streamlit, cho phép người dùng phân tích, đánh giá rủi ro và xếp hạng các cổ phiếu dựa trên phương pháp Ra quyết định Đa tiêu chí (MCDM) - TOPSIS.
+Đây là một ứng dụng web được xây dựng bằng Streamlit, cho phép người dùng phân tích, đánh giá rủi ro và xếp hạng các cổ phiếu dựa trên phương pháp Ra quyết định Đa tiêu chí (MCDM) - TOPSIS và 
 
 Lưu ý: Đây là một công cụ tham khảo và phân tích, không phải là lời khuyên đầu tư trực tiếp.
 
-<img width="1535" height="549" alt="image" src="https://github.com/user-attachments/assets/8a1125a3-8054-4607-9028-886c5dc45a3e" />
+<img width="1221" height="522" alt="image" src="https://github.com/user-attachments/assets/114414db-4c44-4413-a56f-a0cc3c068ef2" />
 
 
 
@@ -25,6 +25,8 @@ _ mysql-connector-python
 
 _ openpyxl 
 
+_ itertools
+
 
 # 3. Cách Cài đặt và Chạy Code
 
@@ -33,7 +35,7 @@ Bạn cần có Python 3.8+ và pip được cài đặt trên máy.
 # Bước 1: Clone Repository
 
 git clone [https://github.com/Baohoang555/DSS_Final.git](https://github.com/Baohoang555/DSS_Final.git)
-cd DSS_Final
+cd ahp.py
 
 # Bước 2: Tạo môi trường ảo (Khuyến nghị)
 
@@ -59,6 +61,6 @@ Import file dữ liệu tickets_all_combined vào SQL và kết nối SQL vào p
 
 # Bước 5: Chạy ứng dụng Streamlit
 # Terminal
-streamlit run DSS_Final.py
+streamlit run ahp.py
 
 
