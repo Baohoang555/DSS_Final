@@ -4,7 +4,6 @@
 
 Lưu ý: Đây là một công cụ tham khảo và phân tích, không phải là lời khuyên đầu tư trực tiếp.
 
-(Ghi chú: Bạn hãy thay thế link ảnh trên bằng ảnh chụp màn hình của chính ứng dụng của bạn, ví dụ như các file ảnh bạn đã gửi lên.)
 <img width="1535" height="549" alt="image" src="https://github.com/user-attachments/assets/8a1125a3-8054-4607-9028-886c5dc45a3e" />
 
 
