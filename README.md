@@ -6,19 +6,11 @@ Lưu ý: Đây là một công cụ tham khảo và phân tích, không phải l
 
 (Ghi chú: Bạn hãy thay thế link ảnh trên bằng ảnh chụp màn hình của chính ứng dụng của bạn, ví dụ như các file ảnh bạn đã gửi lên.)
 <img width="1535" height="549" alt="image" src="https://github.com/user-attachments/assets/8a1125a3-8054-4607-9028-886c5dc45a3e" />
+<img width="1445" height="631" alt="image" src="https://github.com/user-attachments/assets/c75b7b4f-93c9-41ff-a87b-71429196f788" />
+<img width="1437" height="634" alt="image" src="https://github.com/user-attachments/assets/75fb3feb-55bf-4c88-b2e7-744c03667cd6" />
 
 
-# 2. Tính năng chính (Modules)
-
-Trực quan hóa Dữ liệu:
-
-Biểu đồ Cột: So sánh trực quan điểm TOPSIS giữa các cổ phiếu.
-
-Biểu đồ Radar: So sánh chi tiết các chỉ số (đã chuẩn hóa) của top 5 cổ phiếu hàng đầu.
-
-Xuất Báo cáo: Cho phép tải xuống báo cáo phân tích chi tiết (bao gồm dữ liệu đầu vào, trọng số đã chọn và kết quả xếp hạng) dưới dạng file Excel (.xlsx).
-
-# 3. Thư viện sử dụng
+# 2. Thư viện sử dụng
 
 
 _ streamlit 
@@ -36,7 +28,7 @@ _ mysql-connector-python
 _ openpyxl 
 
 
-# 4. Cách Cài đặt và Chạy Code
+# 3. Cách Cài đặt và Chạy Code
 
 Bạn cần có Python 3.8+ và pip được cài đặt trên máy.
 
