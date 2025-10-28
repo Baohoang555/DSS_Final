@@ -59,6 +59,7 @@ pip install -r requirements.txt
 
 
 # Bước 4: Cấu hình Database SQL
+Link: https://colab.research.google.com/drive/1r-B2OpRVpzHlXrg6leSr5BjnD4yweB57?usp=sharing&fbclid=IwY2xjawNtZY9leHRuA2FlbQIxMABicmlkETFBNTlVSWM3eWtCMk4xS0FKAR4cyaC_U4HR9JDq0d4aGBr9cC1D9jCnBAhsj4N5iKOWg5cyQmoHEGvDNqGHyg_aem_GsoAhms5YetuDBErjYBOrw
 Import file dữ liệu tickets_all_combined vào SQL và kết nối SQL vào python
 
 # Bước 5: Chạy ứng dụng Streamlit
