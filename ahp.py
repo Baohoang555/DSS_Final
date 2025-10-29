@@ -9,6 +9,8 @@ import plotly.graph_objects as go
 from io import BytesIO
 from datetime import datetime
 import itertools # Thư viện để tạo các cặp so sánh cho AHP
+import scipy
+from scipy.stats import spearmanr
 
 # --- CẤU HÌNH TRANG WEB ---
 st.set_page_config(
@@ -479,6 +481,94 @@ if st.button("🚀 Bắt đầu Phân tích", use_container_width=True):
         st.download_button("📊 Tải báo cáo chi tiết (.xlsx)", output.getvalue(),
                           f"topsis_ahp_report_{datetime.now().strftime('%Y%m%d')}.xlsx",
                           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", use_container_width=True)
+    try:
+        # 1. Tính toán kết quả TOPSIS (Độc lập)
+        num_criteria = len(criteria)
+        independent_weights_list = np.array([1 / num_criteria] * num_criteria)
+        independent_scores = run_topsis(decision_matrix.values, independent_weights_list, impacts_list)
+        
+        independent_results_df = raw_data.copy()
+        independent_results_df['Điểm TOPSIS (Độc lập)'] = independent_scores
+        independent_results_df['Hạng (Độc lập)'] = independent_results_df['Điểm TOPSIS (Độc lập)'].rank(ascending=False).astype(int)
+        independent_results_df = independent_results_df.sort_values(by='Hạng (Độc lập)')
+
+        # 2. Lưu cả 3 kết quả vào session_state
+        st.session_state['results_cr'] = CR
+        st.session_state['results_topsis_independent'] = independent_results_df
+        st.session_state['results_combined'] = results_df
+
+        # 3. Đặt cờ báo hiệu đã chạy thành công
+        st.session_state['analysis_run_successfully'] = True
+
+    except Exception as e:
+        st.error(f"Lỗi khi tính toán so sánh: {e}")
+        st.session_state['analysis_run_successfully'] = False
 
 st.markdown("---")
 st.markdown("🔬 **TOPSIS & AHP Analysis System**")
+if st.session_state.get('analysis_run_successfully', False):
+    st.markdown("---")
+    st.header("🏁 Đánh giá Hiệu quả 3 Giai đoạn (Định lượng)")
+
+    # --- 1. Đánh giá AHP (Độc lập) ---
+    st.subheader("1. Hiệu quả AHP (Độc lập)")
+    st.info(
+        "Hiệu quả của AHP được đo bằng **Tỷ lệ Nhất quán (CR)**. "
+        "Chỉ số này cho biết các so sánh cặp của bạn có logic và nhất quán hay không."
+    )
+
+    cr_score = st.session_state.get('results_cr', 1.0)
+    st.metric(label="Tỷ lệ Nhất quán (CR)", value=f"{cr_score:.4f}")
+    if cr_score <= 0.1:
+        st.success("✅ **Đánh giá: Hiệu quả.** (CR <= 0.1). Các so sánh của bạn nhất quán, bộ trọng số đáng tin cậy.")
+    else:
+        st.error("⚠️ **Đánh giá: Không Hiệu quả.** (CR > 0.1). Các so sánh của bạn mâu thuẫn. Cần xem lại các so sánh cặp trong tab AHP.")
+
+    # --- 2. Đánh giá TOPSIS (Độc lập) ---
+    st.subheader("2. Hiệu quả TOPSIS (Độc lập)")
+    st.info(
+        "Bản thân TOPSIS độc lập (với trọng số bằng nhau) không có 'điểm hiệu quả'. "
+        "Vai trò của nó là tạo ra một **Xếp hạng Cơ sở (Baseline)** để làm nền so sánh."
+    )
+    st.markdown("Xem Xếp hạng Cơ sở trong bảng so sánh bên dưới.")
+
+    # --- 3. Đánh giá Kết hợp (AHP + TOPSIS) ---
+    st.subheader("3. Hiệu quả Kết hợp (AHP + TOPSIS)")
+    st.info(
+        "Hiệu quả của mô hình kết hợp được đo bằng **mức độ tác động** của AHP lên kết quả của TOPSIS. "
+        "Chúng ta dùng **Hệ số Tương quan Hạng Spearman (Rho)** để đo lường điều này."
+    )
+    try:
+        # Lấy 2 bảng xếp hạng
+        df_combined = st.session_state['results_combined']['Xếp hạng']
+        df_independent = st.session_state['results_topsis_independent']['Hạng (Độc lập)']
+        
+        # Căn chỉnh 2 bảng theo index (Mã CP) để đảm bảo so sánh đúng
+        df_independent = df_independent.reindex(df_combined.index)
+        
+        # Tính toán tương quan hạng
+        correlation, p_value = spearmanr(df_combined, df_independent)      
+        st.metric(label="Hệ số Tương quan Hạng (Spearman's Rho)", value=f"{correlation:.4f}")     
+
+        interpretation = ""
+        if correlation > 0.8:
+            interpretation = ("**Giống nhau (Tương quan > 0.8):** "
+                            "Việc dùng AHP gần như **không làm thay đổi** kết quả xếp hạng. Điều này xảy ra khi các trọng số AHP gần bằng nhau.")
+        elif correlation > 0.4:
+            interpretation = ("**Khá tương đồng (Tương quan 0.4 - 0.8):** "
+                            "Việc dùng AHP **có điều chỉnh** thứ hạng, nhưng xu hướng chung vẫn được giữ nguyên.")
+        else:
+            interpretation = ("**Rất khác biệt (Tương quan < 0.4):** "
+                            "Việc dùng AHP đã **thay đổi đáng kể** kết quả, chứng tỏ trọng số của bạn có tác động lớn.")
+        
+        st.success(
+            f"""
+            **Giải thích:**
+            - Gần **1.0**: Hai bảng xếp hạng y hệt nhau.
+            - Gần **0.0**: Hai bảng xếp hạng không liên quan.
+            **Đánh giá của bạn:** {interpretation}
+            """
+        )
+
+    except Exception as e:
+        st.error(f"Lỗi tính toán tương quan: {e}")
